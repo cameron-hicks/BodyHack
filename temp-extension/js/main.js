@@ -1,4 +1,3 @@
-
 // a class for objects representing individual workout moves
 function Move(name, category, reps) {
   const newMove = {
@@ -58,13 +57,13 @@ var selectionMoves = selectMoves();
 
 // TODO if time: refactor using reduce()
 function buildMessage(selection) {
-  let message = `To access this page, first complete this workout: \n`
+  let message = `To access this page, first complete this workout: <br>`
 
   selection.forEach(move => {
-    message += `\n ${move.name} — Category: ${move.category} — Reps: ${move.reps}`
+    message += `<br> ${move.name} — Category: ${move.category} — Reps: ${move.reps}`
   })
 
-  message += `\n You got this!`
+  message += `<br><br> You got this!`
   return message;
 }
 
@@ -81,8 +80,60 @@ function once(cb) {
 
   return inner;
 }
-var myAlert = once(alert);
-myAlert(buildMessage(selectionMoves));
+
+
+var orgBody = document.querySelector('body');
+// var bodyChildren = orgBody.children;
+// var clonedChildren = new HTMLCollection();
+// for (let i = 0; i < bodyChildren.length; i++) {
+//   clonedChildren.add(bodyChildren[i].cloneNode())
+// }
+
+// var orgBodyInnerHTML = orgBody.innerHTML;
+
+// console.log(`what's in your div, body? `, orgBody);
+// console.log(`show me your inner self `, orgBodyInnerHTML);
+
+// orgBody.children.style.display = 'none';
+// orgBody.innerHTML = 
+var div = document.createElement('div');
+div.style = `
+  height: 100vh;
+  width: 100vh;
+  background-color: #ebbab9;
+  color: #52414c;
+  z-index: 100000;
+  text-align: center;
+  padding: 100px;
+  overflow: hidden;
+  `
+/*div.style.height = "100vh"
+div.style.width = "100vh"
+div.style.backgroundColor = "#ebbab9";
+div.style.color = "#52414c";
+div.style.zIndex = "10000";
+*/
+
+div.innerHTML =
+  `<div id="#popupBox">
+      <div id="#popupContents">
+        ${buildMessage(selectionMoves)}
+      </div>
+    </div>`
+  
+// function replacePage(){
+//   console.log(`i'm still here~ `, orgBodyInnerHTML);
+//   orgBody.innerHTML = orgBodyInnerHTML;
+// }
+
+orgBody.insertAdjacentElement('afterbegin', div);
+orgBody.style.overflow = "hidden"
+
+// TODO: Make delay 90k milliseconds.
+// setTimeout(replacePage, 20000);
+
+// var myAlert = once(alert);
+// myAlert(buildMessage(selectionMoves));
 
 
 console.log("Hi from the end of main.js");

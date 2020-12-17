@@ -12,6 +12,7 @@ BUGS
 
 
 REACH FEATURES
+-- fetch some workout images to get AJAX credit
 -- set a timer/timeout on the popup so that it can't be closed before enough time has passed for the user to do a workout
   -- use setTimeout() to set a timer to delay displaying a close-window button on the popup; until that button appears, you can only close the popup by exiting the page entirely
 -- Show a message when the user ends their browsing session by closing their browser window (not tab).
