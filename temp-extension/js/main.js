@@ -1,8 +1,8 @@
-class Move {
-    constructor(){
-       this.exercises = []; 
-    }
-}
+// class Move {
+//     constructor(){
+//        this.exercises = []; 
+//     }
+// }
 
 
 

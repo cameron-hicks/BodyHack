@@ -15,9 +15,13 @@
     "activeTab"
   ],
   "content_scripts": [ {
+    "matches": ["https://facebook.com/", "https://twitter.com/", "https://instagram.com/", "https://pinterest.com/", "https://netflix.com/", "https://hulu.com/", "https://youtube.com/", "https://amazon.com/"],
+    "js": ["js/main.js"],
     "all_frames": true
   }],
-  "page_action": {
-    "default_popup": "popup.html"
+  "browser_action": {
+    "default_icon": "/assets/iconlol.jpg",
+    "default_popup": "popup.html",
+    "default_title": "BodyHack"
   }
 }

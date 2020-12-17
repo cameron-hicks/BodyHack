@@ -7,6 +7,8 @@
   -- use Math.random to randomly select indices in the array
   -- append those workout moves to a popup modal in the html file of the current tab
   -- code interactivity into the modal
+  -- in manifest: use browser-action's property default_icon and default_title to set extension's icon and title in the bookmarks bar
+  -- try making a new window instead of adding new divs to current page. See: https://medium.com/@berraknil/building-a-chrome-extension-tips-and-tricks-ba95aa664ebe and https://stackoverflow.com/questions/10340481/popup-window-in-chrome-extension
 
 
 REACH FEATURES
