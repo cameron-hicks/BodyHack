@@ -8,6 +8,8 @@
 
 
 BUGS
+-- scroll isn't properly disabled
+-- refreshes sometimes
 -- on complex websites like Twitter, it seems like the page may reload up to 3 times, executing main.js (and our alert) 3 times as well. Once-ifying our alert function seemed to help on some websites, but on others we're still generating 3 distinct alerts.
 
 

@@ -81,25 +81,57 @@ function once(cb) {
   return inner;
 }
 
+// PREVENT SCROLLING
+
+// left: 37, up: 38, right: 39, down: 40,
+// spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
+var keys = {37: 1, 38: 1, 39: 1, 40: 1};
+
+function preventDefault(e) {
+  e.preventDefault();
+}
+
+function preventDefaultForScrollKeys(e) {
+  if (keys[e.keyCode]) {
+    preventDefault(e);
+    return false;
+  }
+}
+
+// modern Chrome requires { passive: false } when adding event
+var supportsPassive = false;
+try {
+  window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
+    get: function () { supportsPassive = true; } 
+  }));
+} catch(e) {}
+
+var wheelOpt = supportsPassive ? { passive: false } : false;
+var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
+
+// call this to Disable
+function disableScroll() {
+  window.addEventListener('DOMMouseScroll', preventDefault, false); // older FF
+  window.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
+  window.addEventListener('touchmove', preventDefault, wheelOpt); // mobile
+  window.addEventListener('keydown', preventDefaultForScrollKeys, false);
+}
+
+// call this to Enable
+function enableScroll() {
+  window.removeEventListener('DOMMouseScroll', preventDefault, false);
+  window.removeEventListener(wheelEvent, preventDefault, wheelOpt); 
+  window.removeEventListener('touchmove', preventDefault, wheelOpt);
+  window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
+}
 
 var orgBody = document.querySelector('body');
-// var bodyChildren = orgBody.children;
-// var clonedChildren = new HTMLCollection();
-// for (let i = 0; i < bodyChildren.length; i++) {
-//   clonedChildren.add(bodyChildren[i].cloneNode())
-// }
 
-// var orgBodyInnerHTML = orgBody.innerHTML;
-
-// console.log(`what's in your div, body? `, orgBody);
-// console.log(`show me your inner self `, orgBodyInnerHTML);
-
-// orgBody.children.style.display = 'none';
-// orgBody.innerHTML = 
 var div = document.createElement('div');
+div.setAttribute('id', 'blocker');
 div.style = `
   height: 100vh;
-  width: 100vh;
+  width: 100vw;
   background-color: #ebbab9;
   color: #52414c;
   z-index: 100000;
@@ -107,12 +139,7 @@ div.style = `
   padding: 100px;
   overflow: hidden;
   `
-/*div.style.height = "100vh"
-div.style.width = "100vh"
-div.style.backgroundColor = "#ebbab9";
-div.style.color = "#52414c";
-div.style.zIndex = "10000";
-*/
+
 
 div.innerHTML =
   `<div id="#popupBox">
@@ -121,19 +148,13 @@ div.innerHTML =
       </div>
     </div>`
   
-// function replacePage(){
-//   console.log(`i'm still here~ `, orgBodyInnerHTML);
-//   orgBody.innerHTML = orgBodyInnerHTML;
-// }
-
 orgBody.insertAdjacentElement('afterbegin', div);
-orgBody.style.overflow = "hidden"
 
 // TODO: Make delay 90k milliseconds.
-// setTimeout(replacePage, 20000);
-
-// var myAlert = once(alert);
-// myAlert(buildMessage(selectionMoves));
-
+setTimeout(function(){
+  orgBody.removeChild(document.querySelector('#blocker'));
+  alert("No pain, no gain! Great job. Happy doom-scrolling!");
+}, 20000);
+// TODO: Do we need to undo scroll by disabling by removing event listeners?
 
 console.log("Hi from the end of main.js");
