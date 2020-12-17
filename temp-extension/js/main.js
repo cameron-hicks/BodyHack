@@ -42,7 +42,7 @@ function selectMoves(){
 	var cache = {};
 	var result = [];
 
-	while (result.length < 6){
+	while (result.length < 4){
 		var i = Math.floor(Math.random() * totalOptions);
 		if (!cache[i]) {
 			cache[i] = exercises[i];
@@ -58,7 +58,7 @@ var selectionMoves = selectMoves();
 
 // TODO if time: refactor using reduce()
 function buildMessage(selection) {
-  let message = `Stop! It's hammer time! \nTo access this page, first complete this workout: \n`
+  let message = `To access this page, first complete this workout: \n`
 
   selection.forEach(move => {
     message += `\n ${move.name} — Category: ${move.category} — Reps: ${move.reps}`
@@ -68,9 +68,21 @@ function buildMessage(selection) {
   return message;
 }
 
-alert(buildMessage(selectionMoves));
+function once(cb) {
+  var alerted = 0;
 
+  function inner(arg) {
+    if (alerted < 1) {
+      alerted++;
+      return cb(arg);
+    } 
+    else return;
+  }
 
+  return inner;
+}
+var myAlert = once(alert);
+myAlert(buildMessage(selectionMoves));
 
 
 console.log("Hi from the end of main.js");

@@ -1,16 +1,19 @@
-
-
--- set a timer/timeout on the popup so that it can't be closed before enough time has passed for the user to do a workout
-  -- use setTimeout() where the callback appends the close-window button to the popup; until that button appears, can only close popup by exiting the page entirely
-
 -- append randomly selected workout moves to a popup modal in the html file of the current tab
 -- code interactivity into the modal
 -- in manifest: use browser-action's property default_icon and default_title to set extension's icon and title in the bookmarks bar
 -- try making a new window instead of adding new divs to current page. See: https://medium.com/@berraknil/building-a-chrome-extension-tips-and-tricks-ba95aa664ebe and https://stackoverflow.com/questions/10340481/popup-window-in-chrome-extension
--- investigate using JQuery 
+-- investigate using JQuery to make a fake alert message with styles: https://www.tutorialspoint.com/How-I-can-change-the-style-of-alert-box-using-JavaScript
+-- more information about the tabs: https://medium.com/@berraknil/building-a-chrome-extension-tips-and-tricks-ba95aa664ebe
+-- run the extension only on the homepage of blocked sites, not dependent pages: eg, Youtube's home page but not the pages of individual videos
+
+
+BUGS
+-- on complex websites like Twitter, it seems like the page may reload up to 3 times, executing main.js (and our alert) 3 times as well. Once-ifying our alert function seemed to help on some websites, but on others we're still generating 3 distinct alerts.
 
 
 REACH FEATURES
+-- set a timer/timeout on the popup so that it can't be closed before enough time has passed for the user to do a workout
+  -- use setTimeout() to set a timer to delay displaying a close-window button on the popup; until that button appears, you can only close the popup by exiting the page entirely
 -- Show a message when the user ends their browsing session by closing their browser window (not tab).
 -- Gamify: Keep track across a browsing session (localStorage) of how many workout challenges user has completed. Display their score. Track high scores.
 -- Hydration reminder
