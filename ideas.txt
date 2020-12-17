@@ -5,7 +5,7 @@ PRIORITIES
 
 
 BUGS
-
+-- selectMoves selects duplicates
 
 
 REACH FEATURES
