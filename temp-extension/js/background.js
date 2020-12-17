@@ -1,4 +1,6 @@
-// create a popup menu
+// This file runs on the Chrome window when you open the window. It doesn't run on any particular pages.
+
+// create a right-click menu to add extension to
 // object to store contextMenus we'll create
 const contextMenus = {};
 
@@ -25,11 +27,11 @@ function contextMenuHandler(info, tab){ // executes a contextMenu
 // myURLs contains the websites where you want your content script to run (runs automatically?)
 const myURLs = ['www.facebook.com', 'www.reddit.com', 'www.youtube.com','www.instagram.com', 'twitter.com', 'www.pinterest.com', 'www.amazon.com', 'www.hulu.com', 'www.netflix.com'];
 
+// Injects your content script into the current tab if its url matches one of the urls listed above. (allows main.js to take effect on page showing in current tab)
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if (changeInfo.status == 'complete' && myURLs.some(url => tab.url.includes(url))) {
         chrome.tabs.executeScript(tabId,{file:'js/main.js'},()=>{
             chrome.tabs.executeScript(tabId,{file:'js/main.js'});
         });
-        /*chrome.pageAction.getPopup(tabId, function(){ console.log("Getting Popup")}).then(console.log("Got Popup"));*/
     }
 });

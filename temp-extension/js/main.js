@@ -38,17 +38,18 @@ var exercises = [
 // invoked on load
 function selectMoves(){
 	var totalOptions = exercises.length;
-	var cache = {};
+	// var cache = {};
 	var result = [];
 
-	while (result.length < 4){
+	while (result.length < 3){
 		var i = Math.floor(Math.random() * totalOptions);
-		if (!cache[i]) {
-			cache[i] = exercises[i];
+		if (!result.includes[exercises[i]]) {
+			// cache[i] = exercises[i];
 			result.push(exercises[i])
-		} else {
-			i = Math.floor(Math.random() * totalOptions);
-		}
+    } 
+    // else {
+		// 	i = Math.floor(Math.random() * totalOptions);
+		// }
 	};
 	return result;
 };
@@ -57,13 +58,19 @@ var selectionMoves = selectMoves();
 
 // TODO if time: refactor using reduce()
 function buildMessage(selection) {
-  let message = `To access this page, first complete this workout: <br>`
+  let message = `
+    <p style="font-weight:bold; font-size: 30px; margin:10px 0 30px 0">BodyHack</p>
+    <p style="font-size:20px; margin:10px 0 30px 0">To access this page, first complete this workout:</p>`
 
   selection.forEach(move => {
-    message += `<br> ${move.name} — Category: ${move.category} — Reps: ${move.reps}`
+    message += 
+    `<p style="font-weight:bold; margin:10px 0">${move.name} x ${move.reps}</p> 
+    <p style="font-size:20px; margin:10px 0 30px 0">
+      <b>Category:</b> ${move.category}
+    </p>`
   })
 
-  message += `<br><br> You got this!`
+  // message += `<br>You got this!`
   return message;
 }
 
@@ -129,32 +136,56 @@ var orgBody = document.querySelector('body');
 
 var div = document.createElement('div');
 div.setAttribute('id', 'blocker');
+div.innerHTML = `${buildMessage(selectionMoves)}`
 div.style = `
-  height: 100vh;
-  width: 100vw;
-  background-color: #ebbab9;
-  color: #52414c;
-  z-index: 100000;
-  text-align: center;
-  padding: 100px;
-  overflow: hidden;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
+  display: block !important;  
+  height: 100vh !important;
+  width: 100vw !important;
+  background-color: #ebbab9 !important;
+  color: #52414c !important;
+  position: fixed !important;
+  z-index: 100000 !important;
+  text-align: center !important;
+  padding: 100px 0;
+  font-size: 28px !important;
   `
 
+// CLOSE BUTTON
 
-div.innerHTML =
-  `<div id="#popupBox">
-      <div id="#popupContents">
-        ${buildMessage(selectionMoves)}
-      </div>
-    </div>`
+const btn = document.createElement('button');
+btn.setAttribute('id', 'go-away-btn');
+btn.innerText = 'Close';
+btn.style = `
+  position: relative !important;
+  font-size: 20px;
+  margin-top: 20px;
+  padding: 10px 0;
+  width: 200px;
+  color: #fffaf0;
+  background-color: #52414c;
+  border: none;
+  border-radius: 4px;
+  `;
+btn.addEventListener('click', () => {
+  div.style.display = 'none';
+});
   
 orgBody.insertAdjacentElement('afterbegin', div);
+disableScroll();  // disables scroll using method pasted above
 
-// TODO: Make delay 90k milliseconds.
+
+// TODO: Make delay 90k milliseconds -- or maybe just 20k ms for the demo.
 setTimeout(function(){
-  orgBody.removeChild(document.querySelector('#blocker'));
-  alert("No pain, no gain! Great job. Happy doom-scrolling!");
-}, 20000);
-// TODO: Do we need to undo scroll by disabling by removing event listeners?
+  // orgBody.removeChild(document.querySelector('#blocker'));  //doesn't work.
+  // div.innerHTML = '';    // doesn't work. 
+  // document.querySelector('#blocker').innerHTML = '';     // doesn't work either.
+  // solution: display a button when timer runs out; that timer has ability to get rid of blocker div.
+  div.appendChild(btn);
+  // console.log("timeout over");
+  // alert("No pain, no gain! Great job. Happy doom-scrolling!");
+  enableScroll(); // undoes scroll disabling using method pasted above
+}, 2000);
+
 
 console.log("Hi from the end of main.js");

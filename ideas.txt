@@ -1,13 +1,10 @@
 PRIORITIES
--- clean minimum styling of blocker div: font size, font weight, bolding, new lines, font color
--- in manifest: use browser-action's property default_icon and default_title to set extension's icon and title in the bookmarks bar
+-- in manifest: use browser-action's property default_icon to set extension's iconin the bookmarks bar
 -- run the extension only on the homepage of blocked sites, not dependent pages: eg, Youtube's home page but not the pages of individual videos
 
 
 BUGS
--- scroll isn't properly disabled
--- refreshes sometimes
--- on complex websites like Twitter, it seems like the page may reload up to 3 times, executing main.js (and our alert) 3 times as well. Once-ifying our alert function seemed to help on some websites, but on others we're still generating 3 distinct alerts.
+-- selectMoves() can return an array containing duplicates
 
 
 REACH FEATURES
@@ -39,6 +36,9 @@ DONE
 -- fill an array with workout moves
 -- use Math.random to randomly select indices in the array
 -- append randomly selected workout moves to a popup modal in the html file of the current tab
+-- refreshes sometimes
+-- on complex websites like Twitter, it seems like the page may reload up to 3 times, executing main.js (and our alert) 3 times as well. Once-ifying our alert function seemed to help on some websites, but on others we're still generating 3 distinct alerts.
+-- clean minimum styling of blocker div: font size, font weight, bolding, new lines, font color
 
 
 
