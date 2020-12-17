@@ -23,7 +23,7 @@ function contextMenuHandler(info, tab){ // executes a contextMenu
 
 
 // myURLs contains the websites where you want your content script to run (runs automatically?)
-const myURLs = ['www.facebook.com', 'www.reddit.com', 'www.youtube.com','www.instagram.com', 'www.twitter.com', 'www.pinterest.com', 'www.amazon.com', 'www.hulu.com', 'www.netflix.com'];
+const myURLs = ['www.facebook.com', 'www.reddit.com', 'www.youtube.com','www.instagram.com', 'twitter.com', 'www.pinterest.com', 'www.amazon.com', 'www.hulu.com', 'www.netflix.com'];
 
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if (changeInfo.status == 'complete' && myURLs.some(url => tab.url.includes(url))) {

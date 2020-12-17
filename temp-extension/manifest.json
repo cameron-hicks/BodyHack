@@ -13,5 +13,11 @@
     "http://*/*",
     "https://*/*",
     "activeTab"
-  ]
+  ],
+  "content_scripts": [ {
+    "all_frames": true
+  }],
+  "page_action": {
+    "default_popup": "popup.html"
+  }
 }

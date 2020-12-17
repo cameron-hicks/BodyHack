@@ -1,5 +1,8 @@
--- include list of blocked sites in popup
--- set a timer on the popup so that it can't be closed before enough time has passed for the user to do a workout
+
+-- set a timer/timeout on the popup so that it can't be closed before enough time has passed for the user to do a workout
+  use setTimeout() where the callback appends the close-window button to the popup; until that button appears, can only close popup by exiting the page entirely
+-- make a class for workout move objects
+  -- properties: HTML element node, move name, workout category, targeted muscle group
 -- fill an array with workout moves
   -- use Math.random to randomly select indices in the array
   -- append those workout moves to a popup modal in the html file of the current tab
@@ -10,3 +13,15 @@ REACH FEATURES
 -- Show a message when the user ends their browsing session by closing their browser window (not tab).
 -- Gamify: Keep track across a browsing session (localStorage) of how many workout challenges user has completed. Display their score. Track high scores.
 -- Hydration reminder
+--  ability for user to set preferred  workout category and see only moves from that category
+-- display list of blocked sites in popup and allow user to add/remove sites from the list
+
+
+
+
+DELETED FROM manifest
+ "content_scripts": [ {
+    "css": ["style.css"],
+    "matches": ["https://facebook.com/", "https://twitter.com/", "https://instagram.com/", "https://pinterest.com/", "https://netflix.com/", "https://hulu.com/", "https://youtube.com/", "https://amazon.com/"],
+    "all_frames": true
+  }],
