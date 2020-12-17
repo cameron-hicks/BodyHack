@@ -1,25 +1,26 @@
 PRIORITIES
 -- in manifest: use browser-action's property default_icon to set extension's iconin the bookmarks bar
 -- run the extension only on the homepage of blocked sites, not dependent pages: eg, Youtube's home page but not the pages of individual videos
+-- countdown timer reach feature
 
 
 BUGS
--- selectMoves() can return an array containing duplicates
+-- selectMoves() can return an array containing duplicates. (I think I may have fixed this while refactoring)
 
 
 REACH FEATURES
+-- countdown timer
 -- code interactivity into the modal
 -- fetch some workout images to get that API credit
--- set a timer/timeout on the popup so that it can't be closed before enough time has passed for the user to do a workout
-  -- use setTimeout() to set a timer to delay displaying a close-window button on the popup; until that button appears, you can only close the popup by exiting the page entirely
 -- Show a message when the user ends their browsing session by closing their browser window (not tab).
 -- Gamify: Keep track across a browsing session (localStorage) of how many workout challenges user has completed. Display their score. Track high scores.
--- Hydration reminder
+-- auto hydration reminder
 --  ability for user to set preferred  workout category and see only moves from that category
 -- display list of blocked sites in popup and allow user to add/remove sites from the list
 -- Interface with an external resource to get Moves: draw Moves from an API or online resource
   -- adjust Move class's properties according to the kinds of information provided by that resource
 -- Include instructions with each Move: https://www.fatherly.com/health-science/easy-workout-quick-workout/
+    -- perhaps as a toggle div that displays only if they click the name of the move?
 
 
 TUTORIALS
@@ -39,6 +40,8 @@ DONE
 -- refreshes sometimes
 -- on complex websites like Twitter, it seems like the page may reload up to 3 times, executing main.js (and our alert) 3 times as well. Once-ifying our alert function seemed to help on some websites, but on others we're still generating 3 distinct alerts.
 -- clean minimum styling of blocker div: font size, font weight, bolding, new lines, font color
+-- set a timer/timeout on the popup so that it can't be closed before enough time has passed for the user to do a workout
+  -- use setTimeout() to set a timer to delay displaying a close-window button on the popup; until that button appears, you can only close the popup by exiting the page entirely
 
 
 
