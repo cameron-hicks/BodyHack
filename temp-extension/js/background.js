@@ -30,6 +30,6 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         chrome.tabs.executeScript(tabId,{file:'js/main.js'},()=>{
             chrome.tabs.executeScript(tabId,{file:'js/main.js'});
         });
-        chrome.pageAction.getPopup(tabId, function(){ console.log("Getting Popup")}).then(console.log("Got Popup"));
+        /*chrome.pageAction.getPopup(tabId, function(){ console.log("Getting Popup")}).then(console.log("Got Popup"));*/
     }
 });
