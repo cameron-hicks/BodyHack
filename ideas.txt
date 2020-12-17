@@ -1,14 +1,12 @@
 
+
 -- set a timer/timeout on the popup so that it can't be closed before enough time has passed for the user to do a workout
-  use setTimeout() where the callback appends the close-window button to the popup; until that button appears, can only close popup by exiting the page entirely
--- make a class for workout move objects
-  -- properties: HTML element node, move name, workout category, targeted muscle group
--- fill an array with workout moves
-  -- use Math.random to randomly select indices in the array
-  -- append those workout moves to a popup modal in the html file of the current tab
-  -- code interactivity into the modal
-  -- in manifest: use browser-action's property default_icon and default_title to set extension's icon and title in the bookmarks bar
-  -- try making a new window instead of adding new divs to current page. See: https://medium.com/@berraknil/building-a-chrome-extension-tips-and-tricks-ba95aa664ebe and https://stackoverflow.com/questions/10340481/popup-window-in-chrome-extension
+  -- use setTimeout() where the callback appends the close-window button to the popup; until that button appears, can only close popup by exiting the page entirely
+
+-- append randomly selected workout moves to a popup modal in the html file of the current tab
+-- code interactivity into the modal
+-- in manifest: use browser-action's property default_icon and default_title to set extension's icon and title in the bookmarks bar
+-- try making a new window instead of adding new divs to current page. See: https://medium.com/@berraknil/building-a-chrome-extension-tips-and-tricks-ba95aa664ebe and https://stackoverflow.com/questions/10340481/popup-window-in-chrome-extension
 
 
 REACH FEATURES
@@ -17,7 +15,18 @@ REACH FEATURES
 -- Hydration reminder
 --  ability for user to set preferred  workout category and see only moves from that category
 -- display list of blocked sites in popup and allow user to add/remove sites from the list
+-- Interface with an external resource to get Moves: draw Moves from an API or online resource
+  -- adjust Move class's properties according to the kinds of information provided by that resource
+-- Include instructions with each Move: https://www.fatherly.com/health-science/easy-workout-quick-workout/
 
+
+
+
+DONE 
+-- make a class for workout move objects
+-- properties: HTML element node, move name, workout category, targeted muscle group
+-- fill an array with workout moves
+-- use Math.random to randomly select indices in the array
 
 
 
