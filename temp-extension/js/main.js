@@ -1,13 +1,13 @@
 // a class for objects representing individual workout moves
-function Move(name, category, reps) {
+function Move(name, category, reps, gif) {
   const newMove = {
     name,
     category, 
-    reps
+    reps,
+    gif,
   };
 
   return newMove;
-  
 }
 
 var exercises = [
@@ -16,40 +16,37 @@ var exercises = [
   Move("Bicycle Sit-Ups", "Core", 25),
   Move('Russian Twists', 'Core', 30),
   Move("Plank", "Core", "45 seconds"),
-  Move("Squats", "Lower Body", 30),
+  Move("Squats", "Lower Body", 30, `<iframe src="https://giphy.com/embed/fnmk65werlZFy81pGw" width="150" height="150" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>`),
   Move('Lunges', 'Lower Body', 20),
   Move('Chair Lunges', 'Lower Body', 20),
   Move('Calf Raises', 'Lower Body', 20),
   Move('Vinyasa', 'Full Body', 5),
-  Move('Football Runs', 'Cardio', '30 seconds'),
+  Move('Football Runs', 'Cardio', '30 seconds', `<iframe src="https://giphy.com/embed/65siwUOTfFIt2" width="480" height="270" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>`),
   Move('Glute Bridge', 'Lower Body', 30),
-  Move('Push-Ups', 'Upper Body', 10),
+  Move('Push-Ups', 'Upper Body', 10, `<iframe src="https://giphy.com/embed/jWlXhoEw9ou8CmrDY7" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>`),
   Move('Tricep Dips', 'Upper Body', 20),
-  Move('Jumping Jacks', 'Cardio', '25 seconds'),
+  Move('Jumping Jacks', 'Cardio', '25 seconds', `<iframe src="https://giphy.com/embed/28etK3CCOH9CDrAqmX" width="150" height="150" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>`),
   Move('Burpees', 'Cardio', 10),
   Move('Calf Raises', 'Lower Body', 20),
   Move('Neck Stretches', 'Stretches', 5),
   Move('Shoulder Stretches', 'Stretches', 5),
   Move('Quad Stretches', 'Stretches', 5),
   Move('High Knees', 'Cardio', '30 seconds'),
-  Move(`Dance Like Nobody's Watching`, 'Cardio', '30 seconds')
+  Move(`Dance Like Nobody's Watching`, 'Cardio', '30 seconds'),
+  Move('Side Squats', 'Lower Body', 30, `<iframe src="https://giphy.com/embed/XdDA2KXw3s2mSUWDI2" width="150" height="150" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>`),
+  Move('Side Plank Dips', 'Core', '30 per side'),
+  Move('Side Lying Leg Raise', 'Lower Body', '20 per side')
 ];
 
-// invoked on load
 function selectMoves(){
 	var totalOptions = exercises.length;
-	// var cache = {};
 	var result = [];
 
 	while (result.length < 3){
 		var i = Math.floor(Math.random() * totalOptions);
 		if (!result.includes[exercises[i]]) {
-			// cache[i] = exercises[i];
 			result.push(exercises[i])
     } 
-    // else {
-		// 	i = Math.floor(Math.random() * totalOptions);
-		// }
 	};
 	return result;
 };
@@ -59,18 +56,24 @@ var selectionMoves = selectMoves();
 // TODO if time: refactor using reduce()
 function buildMessage(selection) {
   let message = `
-    <p style="font-weight:bold; font-size: 30px; margin:10px 0 30px 0">BodyHack</p>
-    <p style="font-size:20px; margin:10px 0 30px 0">To access this page, first complete this workout:</p>`
+      <div style="display:block;">
+        <p style="font-weight:bold; font-size: 30px; margin:10px 0 30px 0">BodyHack</p>
+        <p style="font-size:20px; margin:10px 0 30px 0">To access this page, first complete this workout:</p>
+      </div>
+      <div style="display:flex;flex-direction: row !important;
+      flex-wrap: wrap !important;
+      justify-content: center;">`
 
   selection.forEach(move => {
     message += 
-    `<p style="font-weight:bold; margin:10px 0">${move.name} x ${move.reps}</p> 
-    <p style="font-size:20px; margin:10px 0 30px 0">
-      <b>Category:</b> ${move.category}
-    </p>`
+      `<div>
+        <p style="font-weight:bold; margin:10px 0">${move.name} x ${move.reps}</p> 
+        <p style="font-size:20px; margin:10px 0 30px 0"><b>Category:</b> ${move.category}</p>
+        <iframe src="https://giphy.com/embed/XdDA2KXw3s2mSUWDI2" width="150" height="150" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+      </div>`
   })
 
-  // message += `<br>You got this!`
+  message += `</div>`
   return message;
 }
 
@@ -149,42 +152,41 @@ div.style = `
   text-align: center !important;
   padding: 100px 0;
   font-size: 28px !important;
+  over-flow: auto;
   `
-
+//position: relative !important;  margin-top: 20px;
 // CLOSE BUTTON
-
-const btn = document.createElement('button');
+var btn = document.createElement('button');
 btn.setAttribute('id', 'go-away-btn');
 btn.innerText = 'Close';
 btn.style = `
-  position: relative !important;
   font-size: 20px;
-  margin-top: 20px;
   padding: 10px 0;
   width: 200px;
   color: #fffaf0;
   background-color: #52414c;
   border: none;
   border-radius: 4px;
+  display: block !important;
+  position: fixed !important;
+  z-index: 10000;
+  top: 30px;
+  right: 30px;
   `;
 btn.addEventListener('click', () => {
   div.style.display = 'none';
 });
   
 orgBody.insertAdjacentElement('afterbegin', div);
-disableScroll();  // disables scroll using method pasted above
+// disableScroll();  // disables scroll using method pasted above
 
 
 // TODO: Make delay 90k milliseconds -- or maybe just 20k ms for the demo.
 setTimeout(function(){
-  // orgBody.removeChild(document.querySelector('#blocker'));  //doesn't work.
-  // div.innerHTML = '';    // doesn't work. 
-  // document.querySelector('#blocker').innerHTML = '';     // doesn't work either.
   // solution: display a button when timer runs out; that timer has ability to get rid of blocker div.
   div.appendChild(btn);
-  // console.log("timeout over");
-  // alert("No pain, no gain! Great job. Happy doom-scrolling!");
-  enableScroll(); // undoes scroll disabling using method pasted above
+  console.log("Hi from timeout");
+  // enableScroll(); // undoes scroll disabling using method pasted above
 }, 2000);
 
 

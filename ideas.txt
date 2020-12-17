@@ -5,7 +5,7 @@ PRIORITIES
 
 
 BUGS
--- selectMoves() can return an array containing duplicates. (I think I may have fixed this while refactoring)
+
 
 
 REACH FEATURES
@@ -21,6 +21,7 @@ REACH FEATURES
   -- adjust Move class's properties according to the kinds of information provided by that resource
 -- Include instructions with each Move: https://www.fatherly.com/health-science/easy-workout-quick-workout/
     -- perhaps as a toggle div that displays only if they click the name of the move?
+
 
 
 TUTORIALS
@@ -42,6 +43,8 @@ DONE
 -- clean minimum styling of blocker div: font size, font weight, bolding, new lines, font color
 -- set a timer/timeout on the popup so that it can't be closed before enough time has passed for the user to do a workout
   -- use setTimeout() to set a timer to delay displaying a close-window button on the popup; until that button appears, you can only close the popup by exiting the page entirely
+  -- selectMoves() can return an array containing duplicates. (I think I may have fixed this while refactoring)
+
 
 
 
