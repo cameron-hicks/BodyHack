@@ -1,0 +1,17 @@
+{
+  "name": "BodyHack",
+  "version": "1.0",
+  "description": "You probably need to move more. This extension will make you. Want some doom-scrolling time? You'll have to do squats to earn it.",
+  "background": {
+    "scripts": ["js/background.js"],
+    "persistent": true
+  },
+  "manifest_version": 2,
+  "permissions": [
+    "contextMenus", 
+    "tabs",
+    "http://*/*",
+    "https://*/*",
+    "activeTab"
+  ]
+}

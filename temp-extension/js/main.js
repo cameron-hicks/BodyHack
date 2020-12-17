@@ -1,0 +1,1 @@
+alert("Want doom-scrolling time? You'll have to do squats to earn it.");
