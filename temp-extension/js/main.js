@@ -72,7 +72,7 @@ function buildMessage(selection) {
       `<td style="text-align:center !important">
         <p style="font-size: 28px !important;font-weight:bold; margin:10px 0">${move.name} x ${move.reps}</p> 
         <p style="font-size:20px; margin:10px 0 30px 0"><b>Category:</b> ${move.category}</p>
-        <div>${move.gif}</div>
+        <div style="margin-left:100px">${move.gif}</div>
       </td>`
 
     }
@@ -85,7 +85,7 @@ function buildMessage(selection) {
       `<td style="text-align:center !important">
         <p style="font-size: 28px !important;font-weight:bold; margin:10px 0">${move.name} x ${move.reps}</p> 
         <p style="font-size:20px; margin:10px 0 30px 0"><b>Category:</b> ${move.category}</p>
-        <div>${move.gif}</div>
+        <div style="margin-left:100px">${move.gif}</div>
       </td>`
     }
     message +=`</tr></table>`
